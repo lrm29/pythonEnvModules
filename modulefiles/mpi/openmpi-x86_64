@@ -1,0 +1,22 @@
+#%Module
+
+module-whatis    "OpenMPI environment"
+
+conflict     mpi
+
+setenv       MPI_COMPILER           $(filename)
+setenv       MPI_HOME               /usr/lib64/openmpi
+
+setenv       MPI_BIN                $env(MPI_HOME)/bin
+setenv       MPI_LIB                $env(MPI_HOME)/lib
+setenv       MPI_INCLUDE            /usr/include/$env(MPI_COMPILER)
+setenv       MPI_SYSCONFIG          /etc/$env(MPI_COMPILER)
+setenv       MPI_FORTRAN_MOD_DIR    /usr/lib64/gfortran/modules/$env(MPI_COMPILER)
+setenv       MPI_MAN                /usr/share/man/$env(MPI_COMPILER)
+setenv       MPI_PYTHON_SITEARCH    /usr/lib64/python2.7/site-packages/openmpi
+setenv       MPI_SUFFIX             _openmpi
+
+prepend-path PATH                   $env(MPI_BIN)
+prepend-path LD_LIBRARY_PATH        $env(MPI_LIB)
+prepend-path PYTHONPATH             $env(MPI_PYTHON_SITEARCH)
+prepend-path MANPATH                $env(MPI_MAN)

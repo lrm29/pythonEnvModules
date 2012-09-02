@@ -1,0 +1,12 @@
+#%Module
+
+module-whatis           "Load OpenFOAM gmp"
+
+set    version          $(filename)
+set    gmp_version      gmp-$(version)
+
+set    gmpDir           $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER_ARCH)/$(gmp_version)
+
+setenv GMP_ARCH_PATH    $(gmpDir)
+
+prepend-path LD_LIBRARY_PATH    $(gmpDir)/lib

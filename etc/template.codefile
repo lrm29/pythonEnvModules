@@ -1,0 +1,30 @@
+#%Module
+
+module-whatis   "Template: Examples of $CODE tag usage"
+
+conflict        $(filename)
+
+# Anything within the $CODE...$CODE tags is compiled and evaluated as python
+# code. Usual formatting rules apply.
+
+$CODE
+printErr("Example of some python code:")
+printErr("    Name of file = $(filename)")
+
+head, tail = "$(filename)".split(".")
+printErr("    Head of file = " + head)
+printErr("    Tail of file = " + tail)
+$CODE
+
+$CODE
+printErr("Check if env variable exists and set DOES_ENV_EXIST:")
+if os.path.exists("$env(HOME)"):
+    parse('setenv DOES_ENV_EXIST YES')
+else:
+    parse('setenv DOES_ENV_EXIST NO')
+$CODE
+
+$CODE
+printErr("    $HOME = $env(HOME)")
+printErr("    DOES_ENV_EXIST = $env(DOES_ENV_EXIST)")
+$CODE

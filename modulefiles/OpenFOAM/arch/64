@@ -1,0 +1,5 @@
+#%Module
+
+conflict OpenFOAM/arch
+
+setenv WM_ARCH_OPTION           $(filename)

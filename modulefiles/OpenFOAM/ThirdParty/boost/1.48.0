@@ -1,0 +1,13 @@
+#%Module
+
+module-whatis           "OpenFOAM Boost Environment"
+
+$CODE
+parse('set version ' + "$(filename)".replace(".", "_"))
+$CODE
+
+set    BOOST_INSTALL    $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)
+
+setenv BOOST_ARCH_PATH  $(BOOST_INSTALL)/boost_$(version)
+
+prepend-path LD_LIBRARY_PATH    $env(BOOST_ARCH_PATH)/lib

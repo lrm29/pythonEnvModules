@@ -1,0 +1,13 @@
+#%Module
+
+conflict OpenFOAM/wmVariables
+
+setenv WM_PROJECT               OpenFOAM
+setenv WM_PROJECT_INST_DIR      $env(HOME)/$env(WM_PROJECT)
+setenv WM_PROJECT_DIR           $env(WM_PROJECT_INST_DIR)/$env(WM_PROJECT)-$env(WM_PROJECT_VERSION)
+setenv WM_PROJECT_USER_DIR      $env(WM_PROJECT_INST_DIR)/$env(USER)-$env(WM_PROJECT_VERSION)
+setenv WM_THIRD_PARTY_DIR       $env(WM_PROJECT_INST_DIR)/ThirdParty-$env(WM_PROJECT_VERSION)
+setenv WM_DIR                   $env(WM_PROJECT_DIR)/wmake
+
+prepend-path PATH               $env(WM_DIR)
+prepend-path PATH               $env(WM_PROJECT_DIR)/bin

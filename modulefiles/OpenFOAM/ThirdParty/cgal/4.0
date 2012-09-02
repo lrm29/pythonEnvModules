@@ -1,0 +1,10 @@
+#%Module
+
+module-whatis           "OpenFOAM CGAL Environment"
+
+set    version          $(filename)
+set    CGAL_INSTALL     $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)
+
+setenv CGAL_ARCH_PATH   $(CGAL_INSTALL)/CGAL-$(version)
+
+prepend-path LD_LIBRARY_PATH    $env(CGAL_ARCH_PATH)/lib

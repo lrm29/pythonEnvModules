@@ -1,0 +1,32 @@
+#%Module
+
+module-whatis    "Load OpenFOAM ParaView"
+
+set    version              $(filename)
+set    major_version        3.12
+set    paraview_install     $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)
+
+#- ParaView version, automatically determine major version
+setenv ParaView_VERSION $(version)
+setenv ParaView_MAJOR   $(major_version)
+setenv ParaView_DIR     $(paraview_install)/paraview-$env(ParaView_VERSION)
+
+set    paraviewInstDir  $env(WM_THIRD_PARTY_DIR)/ParaView-$env(ParaView_VERSION)
+
+$CODE
+if os.path.exists("$env(ParaView_DIR)") or os.path.exists("$(paraviewInstDir)"):
+
+    parse('prepend-path PATH            $env(ParaView_DIR)/bin')
+    parse('prepend-path LD_LIBRARY_PATH $env(ParaView_DIR)/lib/paraview-$env(ParaView_MAJOR)')
+    parse('setenv       PV_PLUGIN_PATH  $env(FOAM_LIBBIN)/paraview-$env(ParaView_MAJOR)')
+    parse('set          paraviewPython  $ParaView_DIR/Utilities/VTKPythonWrapping')
+
+    if os.path.exists("$(paraviewPython)"):
+
+        parse('append-path PYTHONPATH $(paraviewPython)')
+        parse('append-path PYTHONPATH $env(ParaView_DIR)/lib/paraview-$env(ParaView_MAJOR)')
+
+else:
+
+    parse('unsetenv PV_PLUGIN_PATH')
+$CODE

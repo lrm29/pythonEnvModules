@@ -1,0 +1,5 @@
+function module --description "Load module environments"
+    set -l pythonExe (which python)
+    set -l pythonEnvModulesExe ~/pythonEnvModules/src/pythonenvmodules.py
+    eval $pythonExe $pythonEnvModulesExe --shell="fish" $argv | .
+end

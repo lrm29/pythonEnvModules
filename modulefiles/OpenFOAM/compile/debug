@@ -1,0 +1,5 @@
+#%Module
+
+conflict OpenFOAM/compile
+
+setenv WM_COMPILE_OPTION        Debug

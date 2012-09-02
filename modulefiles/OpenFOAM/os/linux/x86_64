@@ -1,0 +1,20 @@
+#%Module
+
+module-whatis           "Load OpenFOAM operating system settings"
+
+$CODE
+if "32" in "$env(WM_ARCH_OPTION)":
+    parse('setenv WM_ARCH               linux')
+    parse('setenv WM_COMPILER_ARCH      64')
+    parse('setenv WM_CFLAGS             "-m32 -fPIC"')
+    parse('setenv WM_CXXFLAGS           "-m32 -fPIC"')
+    parse('setenv WM_LDFLAGS            -m32')
+elif "64" in "$env(WM_ARCH_OPTION)":
+    parse('setenv WM_ARCH               linux64')
+    parse('setenv WM_COMPILER_LIB_ARCH  64')
+    parse('setenv WM_CFLAGS             "-m64 -fPIC"')
+    parse('setenv WM_CXXFLAGS           "-m64 -fPIC"')
+    parse('setenv WM_LDFLAGS            -m64')
+else:
+    printErr("Unknown WM_ARCH_OPTION " + $env(WM_ARCH_OPTION))
+$CODE

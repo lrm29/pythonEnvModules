@@ -1,0 +1,10 @@
+#%Module
+
+module-whatis           "Load OpenFOAM Compiler"
+
+setenv WM_COMPILER              Gcc
+setenv WM_CC                    gcc
+setenv WM_CXX                   g++
+setenv WM_LINK_LANGUAGE         c++
+setenv WM_OPTIONS               $env(WM_ARCH)$env(WM_COMPILER)$env(WM_PRECISION_OPTION)$env(WM_COMPILE_OPTION)
+setenv WM_OSTYPE                POSIX

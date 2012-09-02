@@ -1,0 +1,27 @@
+#%Module
+
+what-is     "Default OpenFOAM environment settings"
+
+conflict    OpenFOAM
+
+setenv WM_NCOMPPROCS            8
+
+module load OpenFOAM/precision
+module load OpenFOAM/compile
+module load OpenFOAM/arch
+
+module load OpenFOAM/version
+module load OpenFOAM/wmVariables
+
+module load OpenFOAM/os/linux
+
+module load OpenFOAM/mpi
+module load OpenFOAM/compiler/gcc
+
+module load OpenFOAM/foamVariables
+module load OpenFOAM/aliases
+
+module load OpenFOAM/ThirdParty/scotch
+module load OpenFOAM/ThirdParty/paraview
+module load OpenFOAM/ThirdParty/boost
+module load OpenFOAM/ThirdParty/cgal

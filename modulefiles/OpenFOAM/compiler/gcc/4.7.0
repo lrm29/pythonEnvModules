@@ -1,0 +1,23 @@
+#%Module
+
+module-whatis                   "Load OpenFOAM Compiler"
+
+set    version                  $(filename)
+set    gcc_version              gcc-$(version)
+set    gccDir                   $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER_ARCH)/$(gcc_version)
+
+setenv WM_COMPILER              Gcc
+setenv WM_CC                    gcc
+setenv WM_CXX                   g++
+setenv WM_LINK_LANGUAGE         c++
+setenv WM_OPTIONS               $env(WM_ARCH)$env(WM_COMPILER)$env(WM_PRECISION_OPTION)$env(WM_COMPILE_OPTION)
+setenv WM_OSTYPE                POSIX
+
+prepend-path MANPATH            $(gccDir)/man
+prepend-path PATH               $(gccDir)/bin
+
+prepend-path LD_LIBRARY_PATH    $(gccDir)/lib$env(WM_COMPILER_LIB_ARCH)
+
+module load OpenFOAM/compiler/gcc/gmp/5.0.4
+module load OpenFOAM/compiler/gcc/mpc/0.9
+module load OpenFOAM/compiler/gcc/mpfr/3.1.0

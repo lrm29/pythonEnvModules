@@ -1,0 +1,5 @@
+#%Module
+
+conflict    OpenFOAM/precision
+
+setenv WM_PRECISION_OPTION      SP

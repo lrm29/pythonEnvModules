@@ -1,0 +1,10 @@
+#%Module
+
+module-whatis           "OpenFOAM Scotch Environment"
+#prereq                  OpenFOAM
+
+set    version          $(filename)
+set    scotch_install   $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)
+
+setenv SCOTCH_VERSION   scotch_$(version)
+setenv SCOTCH_ARCH_PATH $(scotch_install)/$env(SCOTCH_VERSION)

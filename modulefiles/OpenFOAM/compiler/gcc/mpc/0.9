@@ -1,0 +1,10 @@
+#%Module
+
+module-whatis   "Load OpenFOAM mpc"
+
+set    version          $(filename)
+set    mpc_version      mpc-$(version)
+
+set    mpcDir           $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER_ARCH)/$(mpc_version)
+
+prepend-path LD_LIBRARY_PATH    $(mpcDir)/lib

@@ -1,0 +1,12 @@
+#%Module
+
+module-whatis    "System OpenMPI settings"
+
+conflict OpenFOAM/mpi
+
+setenv WM_MPLIB                 SYSTEMOPENMPI
+setenv FOAM_MPI                 openmpi-system
+setenv MPI_ARCH_PATH            $env(MPI_LIB)
+
+prepend-path LD_LIBRARY_PATH    $env(FOAM_LIBBIN)/$env(FOAM_MPI)
+prepend-path LD_LIBRARY_PATH    $env(FOAM_EXT_LIBBIN)/$env(FOAM_MPI)

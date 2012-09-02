@@ -1,0 +1,17 @@
+#%Module
+
+module-whatis   "Load OpenFOAM Compiler"
+
+set             version             $(filename)
+set             clang_version       llvm-$(version)
+set             clangDir            $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER_ARCH)/$(clang_version)
+
+setenv          WM_COMPILER         Clang
+setenv          WM_CC               clang
+setenv          WM_CXX              clang++
+setenv          WM_LINK_LANGUAGE    c++
+setenv          WM_OPTIONS          $env(WM_ARCH)$env(WM_COMPILER)$env(WM_PRECISION_OPTION)$env(WM_COMPILE_OPTION)
+setenv          WM_OSTYPE           POSIX
+
+prepend-path    PATH                $(clangDir)/share/man
+prepend-path    MANPATH             $(clangDir)/bin

@@ -1,0 +1,42 @@
+#%Module
+
+module-whatis           "Load OpenFOAM aliases"
+#prereq                  OpenFOAM
+
+# Toggle wmakeScheduler on/off
+#  - also need to set WM_HOSTS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#set-alias wmSchedON     "export WM_SCHEDULER=$env(WM_PROJECT_DIR)/wmake/wmakeScheduler"
+#set-alias wmSchedOFF    "unset WM_SCHEDULER"
+
+
+# Change directory set-aliases
+# ~~~~~~~~~~~~~~~~~~~~~~~~
+set-alias src           "cd $env(FOAM_SRC)"
+set-alias lib           "cd $env(FOAM_LIBBIN)"
+set-alias run           "cd $env(FOAM_RUN)"
+set-alias foam          "cd $env(WM_PROJECT_DIR)"
+set-alias foamsrc       "cd $env(FOAM_SRC)/$env(WM_PROJECT)"
+set-alias foamfv        "cd $env(FOAM_SRC)/finiteVolume"
+set-alias app           "cd $env(FOAM_APP)"
+set-alias util          "cd $env(FOAM_UTILITIES)"
+set-alias sol           "cd $env(FOAM_SOLVERS)"
+set-alias tut           "cd $env(FOAM_TUTORIALS)"
+
+set-alias foamApps      "cd $env(FOAM_APP)"
+set-alias foamSol       "cd $env(FOAM_SOLVERS)"
+set-alias foamTuts      "cd $env(FOAM_TUTORIALS)"
+set-alias foamUtils     "cd $env(FOAM_UTILITIES)"
+set-alias foam3rdParty  "cd $env(WM_THIRD_PARTY_DIR)"
+
+
+$CODE
+if os.path.exists("$env(WM_PROJECT_SITE)"):
+    parse('set-alias foamSite "cd $env(WM_PROJECT_SITE)"')
+else:
+    parse('set-alias foamSite "cd $env(WM_PROJECT_INST_DIR)/site"')
+$CODE
+
+#$CODE
+#    printErr(os.uname())
+#$CODE

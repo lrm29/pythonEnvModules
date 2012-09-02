@@ -1,0 +1,40 @@
+#%Module
+
+conflict OpenFOAM/foamVariables
+
+setenv FOAM_APP                 $env(WM_PROJECT_DIR)/applications
+setenv FOAM_APPBIN              $env(WM_PROJECT_DIR)/platforms/$env(WM_OPTIONS)/bin
+setenv FOAM_LIBBIN              $env(WM_PROJECT_DIR)/platforms/$env(WM_OPTIONS)/lib
+setenv FOAM_EXT_LIBBIN          $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_OPTIONS)/lib
+setenv FOAM_INST_DIR            $env(WM_PROJECT_INST_DIR)
+setenv FOAM_JOB_DIR             $env(FOAM_INST_DIR)/jobControl
+setenv FOAM_RUN                 $env(WM_PROJECT_USER_DIR)/run
+setenv FOAM_SETTINGS            ""
+setenv FOAM_SIGFPE              ""
+
+$CODE
+if os.path.exists("$env(WM_PROJECT_SITE)"):
+    parse('setenv FOAM_SITE_APPBIN $env(WM_PROJECT_SITE)/$env(WM_PROJECT_VERSION)/platforms/$env(WM_OPTIONS)/bin')
+    parse('setenv FOAM_SITE_LIBBIN $env(WM_PROJECT_SITE)/$env(WM_PROJECT_VERSION)/platforms/$env(WM_OPTIONS)/lib')
+else:
+    parse('setenv FOAM_SITE_APPBIN $env(WM_PROJECT_INST_DIR)/site/$env(WM_PROJECT_VERSION)/platforms/$env(WM_OPTIONS)/bin')
+    parse('setenv FOAM_SITE_LIBBIN $env(WM_PROJECT_INST_DIR)/site/$env(WM_PROJECT_VERSION)/platforms/$env(WM_OPTIONS)/lib')
+$CODE
+
+setenv FOAM_SRC                 $env(WM_PROJECT_DIR)/src
+setenv FOAM_TUTORIALS           $env(WM_PROJECT_DIR)/tutorials
+setenv FOAM_USER_APPBIN         $env(WM_PROJECT_USER_DIR)/platforms/$env(WM_OPTIONS)/bin
+setenv FOAM_USER_LIBBIN         $env(WM_PROJECT_USER_DIR)/platforms/$env(WM_OPTIONS)/lib
+setenv FOAM_SOLVERS             $env(FOAM_APP)/solvers
+setenv FOAM_UTILITIES           $env(FOAM_APP)/utilities
+
+prepend-path PATH               $env(FOAM_APPBIN)
+prepend-path PATH               $env(FOAM_SITE_APPBIN)
+prepend-path PATH               $env(FOAM_USER_APPBIN)
+
+prepend-path LD_LIBRARY_PATH    $env(FOAM_EXT_LIBBIN)
+prepend-path LD_LIBRARY_PATH    $env(FOAM_SITE_LIBBIN)
+prepend-path LD_LIBRARY_PATH    $env(FOAM_LIBBIN)
+prepend-path LD_LIBRARY_PATH    $env(FOAM_USER_LIBBIN)
+
+

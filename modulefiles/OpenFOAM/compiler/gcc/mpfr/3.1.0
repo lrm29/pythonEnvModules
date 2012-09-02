@@ -1,0 +1,12 @@
+#%Module
+
+module-whatis   "Load OpenFOAM Compiler"
+
+set    version          $(filename)
+set    mpfr_version     mpfr-$(version)
+
+set    mpfrDir          $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER_ARCH)/$(mpfr_version)
+
+setenv MPFR_ARCH_PATH   $mpfrDir
+
+prepend-path LD_LIBRARY_PATH    $(mpfrDir)/lib

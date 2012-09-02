@@ -1,0 +1,20 @@
+#%Module
+
+module-whatis    "ThirdParty OpenMPI settings"
+
+conflict OpenFOAM/mpi
+
+setenv WM_MPLIB                 OPENMPI
+setenv FOAM_MPI                 $(filename)
+setenv MPI_ARCH_PATH            $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)/$env(FOAM_MPI)          
+setenv OPAL_PREFIX              $env(MPI_ARCH_PATH)
+
+prepend-path LD_LIBRARY_PATH    $env(FOAM_LIBBIN)/dummy
+prepend-path PATH               $env(MPI_ARCH_PATH)/bin
+prepend-path LD_LIBRARY_PATH    $env(MPI_ARCH_PATH)/lib$env(WM_COMPILER_LIB_ARCH)
+prepend-path LD_LIBRARY_PATH    $env(MPI_ARCH_PATH)/lib
+prepend-path LD_LIBRARY_PATH    $env(FOAM_LIBBIN)/$env(FOAM_MPI)
+prepend-path LD_LIBRARY_PATH    $env(FOAM_EXT_LIBBIN)/$env(FOAM_MPI)
+prepend-path MANPATH            $env(MPI_ARCH_PATH)/man
+
+setenv MPI_BUFFER_SIZE          20000000

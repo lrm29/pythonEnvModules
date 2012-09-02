@@ -1,0 +1,8 @@
+#%Module
+
+module-whatis               "OpenFOAM CMake Environment"
+
+set             cmake       $env(WM_THIRD_PARTY_DIR)/platforms/$env(WM_ARCH)$env(WM_COMPILER)/$(filename)
+
+setenv          CMAKE_HOME  $(cmake)
+prepend-path    PATH        $env(CMAKE_HOME)/bin

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pythonExe=$(which python)
+moduleExe=~/pythonEnvModules/src/pythonenvmodules.py
+
+module()
+{
+    eval $($pythonExe $moduleExe --shell="bash" $1 $2);
+}
+
+export -f module

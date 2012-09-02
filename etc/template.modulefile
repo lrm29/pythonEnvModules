@@ -1,0 +1,25 @@
+#%Module
+
+# Provides a brief explanation of what this file loads for the command
+# module whatis
+module-whatis   "Template: Examples of actions"
+
+# Prevents similar module files being loaded
+# $(filename) expands to the name of the module file
+conflict        $(filename)
+
+# Set this variable only within the scope of this file
+set             TEST_VARIABLE        toThisValue
+
+# Set an environment variable
+setenv          TEST_ENV_VARIABLE    toThisValue
+
+# Set an alias
+set-alias       TEST_ALIAS           "cd $env(HOME)"
+
+# Prepend and append to path
+prepend-path    TEST_PATH            $env(HOME)
+append-path     TEST_PATH            $env(HOME)
+
+# Load another module
+module          load                 etc/template.codefile
